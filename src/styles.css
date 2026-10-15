@@ -2,7 +2,7 @@
 
 @theme {
   --font-sans: "Source Sans 3", "Segoe UI", sans-serif;
-  --font-display: "Outfit", "Segoe UI", sans-serif;
+  --font-display: "Source Sans 3", "Segoe UI", sans-serif;
 
   --color-ink: #12202b;
   --color-ink-soft: #2c3b48;
@@ -44,8 +44,8 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-weight: 600;
+    letter-spacing: 0;
     text-wrap: balance;
     line-height: 1.15;
   }
