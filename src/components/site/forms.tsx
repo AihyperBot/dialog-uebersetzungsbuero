@@ -18,9 +18,21 @@ function isEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
+function mailLink(subject: string, body: string) {
+  return `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+function openMail(href: string) {
+  const link = document.createElement("a");
+  link.href = href;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+}
+
 export function InquiryForm({ defaultLanguage = "" }: { defaultLanguage?: string }) {
   const [errors, setErrors] = useState<Errors>({});
-  const [draft, setDraft] = useState("");
+  const [mail, setMail] = useState<{ href: string; body: string } | null>(null);
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -38,10 +50,14 @@ export function InquiryForm({ defaultLanguage = "" }: { defaultLanguage?: string
     if (!isEmail(email)) next.email = "Bitte geben Sie eine gültige E-Mail-Adresse an.";
     if (!leistung) next.leistung = "Bitte wählen Sie eine Leistung.";
     if (sprache.length < 2) next.sprache = "Bitte nennen Sie die Sprache.";
-    if (message.length < 12) next.message = "Bitte beschreiben Sie Ihr Anliegen in wenigen Sätzen.";
+    if (message.length < 2) next.message = "Bitte schreiben Sie kurz Ihr Anliegen.";
     if (privacy !== "on") next.privacy = "Bitte bestätigen Sie den Hinweis zum Datenschutz.";
     setErrors(next);
-    if (Object.keys(next).length > 0) return;
+    if (Object.keys(next).length > 0) {
+      setMail(null);
+      document.getElementById(Object.keys(next)[0])?.scrollIntoView({ block: "center" });
+      return;
+    }
 
     const body = [
       `Name: ${name}`,
@@ -56,11 +72,9 @@ export function InquiryForm({ defaultLanguage = "" }: { defaultLanguage?: string
       .filter((line) => line !== null)
       .join("\n");
 
-    const href = `mailto:${site.email}?subject=${encodeURIComponent(
-      `Anfrage: ${leistung} – ${sprache}`,
-    )}&body=${encodeURIComponent(body)}`;
-    setDraft(body);
-    window.location.href = href;
+    const href = mailLink(`Anfrage: ${leistung} – ${sprache}`, body);
+    setMail({ href, body });
+    openMail(href);
   }
 
   return (
@@ -149,14 +163,14 @@ export function InquiryForm({ defaultLanguage = "" }: { defaultLanguage?: string
       >
         Anfrage per E-Mail vorbereiten
       </button>
-      {draft ? <DraftNotice body={draft} /> : null}
+      {mail ? <DraftNotice href={mail.href} body={mail.body} /> : null}
     </form>
   );
 }
 
 export function ApplicationForm() {
   const [errors, setErrors] = useState<Errors>({});
-  const [draft, setDraft] = useState("");
+  const [mail, setMail] = useState<{ href: string; body: string } | null>(null);
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -171,10 +185,15 @@ export function ApplicationForm() {
     if (name.length < 2) next.name = "Bitte nennen Sie Ihren Namen.";
     if (!isEmail(email)) next.email = "Bitte geben Sie eine gültige E-Mail-Adresse an.";
     if (languages.length < 2) next.languages = "Bitte nennen Sie Ihre Sprachen.";
-    if (message.length < 12) next.message = "Bitte fügen Sie ein kurzes Anschreiben hinzu.";
+    if (message.length < 2) next.message = "Bitte fügen Sie ein kurzes Anschreiben hinzu.";
     if (privacy !== "on") next.privacy = "Bitte bestätigen Sie den Hinweis zum Datenschutz.";
     setErrors(next);
-    if (Object.keys(next).length > 0) return;
+    if (Object.keys(next).length > 0) {
+      setMail(null);
+      const field = Object.keys(next)[0] === "name" ? "app-name" : `app-${Object.keys(next)[0]}`;
+      document.getElementById(field)?.scrollIntoView({ block: "center" });
+      return;
+    }
 
     const body = [
       `Name: ${name}`,
@@ -189,11 +208,9 @@ export function ApplicationForm() {
       .filter((line) => line !== null)
       .join("\n");
 
-    const href = `mailto:${site.email}?subject=${encodeURIComponent(
-      `Bewerbung Sprachmittler – ${languages}`,
-    )}&body=${encodeURIComponent(body)}`;
-    setDraft(body);
-    window.location.href = href;
+    const href = mailLink(`Bewerbung Sprachmittler – ${languages}`, body);
+    setMail({ href, body });
+    openMail(href);
   }
 
   return (
@@ -256,12 +273,12 @@ export function ApplicationForm() {
       >
         Bewerbung per E-Mail vorbereiten
       </button>
-      {draft ? <DraftNotice body={draft} /> : null}
+      {mail ? <DraftNotice href={mail.href} body={mail.body} /> : null}
     </form>
   );
 }
 
-function DraftNotice({ body }: { body: string }) {
+function DraftNotice({ href, body }: { href: string; body: string }) {
   const [copied, setCopied] = useState(false);
 
   async function copy() {
@@ -276,8 +293,15 @@ function DraftNotice({ body }: { body: string }) {
   return (
     <div className="border border-line bg-brass-soft p-4 text-sm text-ink-soft">
       <p className="font-semibold text-ink">
-        Ihr E-Mail-Programm sollte sich geöffnet haben. Falls nicht, senden Sie den Text an {site.email}.
+        Die Seite bleibt offen. Tippen Sie auf den roten Knopf, falls die E-Mail-App nicht von allein
+        aufging. In dieser Vorschau kann das Handy die App manchmal nicht öffnen.
       </p>
+      <a
+        href={href}
+        className="mt-3 inline-flex h-11 items-center bg-seal px-4 text-sm font-semibold text-on-seal"
+      >
+        E-Mail-App öffnen
+      </a>
       <pre className="mt-3 overflow-x-auto whitespace-pre-wrap font-sans text-sm text-ink">{body}</pre>
       <button
         type="button"
