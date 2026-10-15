@@ -91,20 +91,10 @@ function SiteHeader() {
           </p>
         </Container>
       </div>
+      <div className="h-1 bg-linear-to-r from-logo-blue to-logo-red" />
       <Container className="flex items-center justify-between gap-4 py-3">
-        <Link to="/" className="flex min-h-11 items-center gap-3">
-          <span
-            aria-hidden="true"
-            className="flex h-11 w-11 shrink-0 items-center justify-center border border-brass bg-ink font-display text-2xl leading-none text-on-ink"
-          >
-            D
-          </span>
-          <span className="leading-none">
-            <span className="block font-display text-2xl tracking-wide text-ink">Dialog</span>
-            <span className="mt-1 hidden text-xs font-semibold tracking-eyebrow text-muted uppercase sm:block">
-              Dolmetscher- & Übersetzungsbüro
-            </span>
-          </span>
+        <Link to="/" className="flex min-h-11 items-center">
+          <img src="/logo.png" alt="Dialog Dolmetscherbüro" className="h-10 w-auto sm:h-12" />
         </Link>
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Hauptnavigation">
           {navItems.map((item) => (
@@ -166,8 +156,8 @@ function SiteFooter() {
     <footer className="mt-auto border-t border-line bg-ink text-on-ink">
       <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <p className="font-display text-3xl">Dialog</p>
-          <p className="mt-2 text-sm text-brass-soft">{site.legalName}</p>
+          <img src="/logo.png" alt="" className="h-12 w-auto bg-white px-2 py-1" />
+          <p className="mt-3 text-sm text-brass-soft">{site.legalName}</p>
           <p className="mt-4 text-sm leading-relaxed text-on-ink/80">
             {site.address.street}
             <br />
