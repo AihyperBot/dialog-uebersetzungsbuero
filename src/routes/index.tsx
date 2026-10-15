@@ -54,8 +54,13 @@ function HomePage() {
               </Link>
             </div>
           </div>
-          <aside className="flex flex-col justify-between bg-ink p-7 text-on-ink sm:p-8 lg:col-span-5">
-            <div>
+          <aside className="flex flex-col bg-ink text-on-ink lg:col-span-5">
+            <img
+              src="/hero.jpg"
+              alt="Dolmetschung in einem hellen Besprechungsraum"
+              className="h-56 w-full object-cover sm:h-72 lg:h-64"
+            />
+            <div className="flex flex-1 flex-col justify-between p-7 sm:p-8">
               <p className="text-xs font-semibold tracking-eyebrow text-brass-soft uppercase">Schwerpunkt</p>
               <p className="mt-4 font-display text-3xl text-on-ink">
                 Kurdisch, Türkisch, Aserbaidschanisch und Turkmenisch.
@@ -77,12 +82,12 @@ function HomePage() {
                   </li>
                 ))}
               </ul>
+              <p className="mt-8 text-sm text-brass-soft">
+                Büro in {site.address.city}
+                <br />
+                Einsatz bundesweit
+              </p>
             </div>
-            <p className="mt-8 text-sm text-brass-soft">
-              Büro in {site.address.city}
-              <br />
-              Einsatz bundesweit
-            </p>
           </aside>
         </Container>
       </section>
@@ -98,7 +103,13 @@ function HomePage() {
               Leistungen im Überblick
             </Link>
           </div>
-          <ol className="mt-10 divide-y divide-line border-y border-line">
+          <div className="mt-10 grid items-stretch gap-8 lg:grid-cols-12">
+            <img
+              src="/desk.jpg"
+              alt="Arbeitsplatz für Übersetzungen"
+              className="h-56 w-full object-cover lg:col-span-5 lg:h-full"
+            />
+            <ol className="divide-y divide-line border-y border-line lg:col-span-7">
             {[
               {
                 n: "01",
@@ -122,7 +133,8 @@ function HomePage() {
                 <p className="text-ink-soft sm:col-span-7">{item.text}</p>
               </li>
             ))}
-          </ol>
+            </ol>
+          </div>
         </Container>
       </section>
 
