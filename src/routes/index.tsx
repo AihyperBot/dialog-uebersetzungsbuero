@@ -127,10 +127,12 @@ function HomePage() {
                 text: "Alle Übersetzungen können auf Wunsch beglaubigt werden.",
               },
             ].map((item) => (
-              <li key={item.n} className="grid gap-3 py-7 sm:grid-cols-12 sm:gap-6">
-                <p className="font-display text-3xl text-brass sm:col-span-2">{item.n}</p>
-                <h3 className="font-display text-3xl text-ink sm:col-span-3">{item.title}</h3>
-                <p className="text-ink-soft sm:col-span-7">{item.text}</p>
+              <li key={item.n} className="grid grid-cols-[3.25rem_minmax(0,1fr)] gap-x-4 py-6">
+                <p className="font-display text-2xl text-brass">{item.n}</p>
+                <div className="min-w-0">
+                  <h3 className="font-display text-2xl text-ink">{item.title}</h3>
+                  <p className="mt-1 text-ink-soft">{item.text}</p>
+                </div>
               </li>
             ))}
             </ol>
