@@ -4,20 +4,20 @@
   --font-sans: "Source Sans 3", "Segoe UI", sans-serif;
   --font-display: "Outfit", "Segoe UI", sans-serif;
 
-  --color-ink: #1c160e;
-  --color-ink-soft: #3a3124;
-  --color-muted: #6a5c45;
-  --color-paper: #efd48a;
-  --color-paper-deep: #e2c15a;
-  --color-surface: #f7e7b4;
-  --color-line: #d4b86a;
-  --color-line-strong: #b8923a;
+  --color-ink: #12202b;
+  --color-ink-soft: #2c3b48;
+  --color-muted: #5c6b78;
+  --color-paper: #e4eef3;
+  --color-paper-deep: #d2e1ea;
+  --color-surface: #f5f9fb;
+  --color-line: #c5d5df;
+  --color-line-strong: #8eacbe;
   --color-seal: #c4312e;
   --color-seal-deep: #9d2623;
-  --color-brass: #6e4e0c;
-  --color-brass-soft: #fff4d0;
-  --color-on-seal: #fffaf0;
-  --color-on-ink: #fbf6e6;
+  --color-brass: #0c6e96;
+  --color-brass-soft: #e5f4fb;
+  --color-on-seal: #ffffff;
+  --color-on-ink: #f4f8fa;
   --color-logo-blue: #1aa3dc;
   --color-logo-red: #f25450;
 
