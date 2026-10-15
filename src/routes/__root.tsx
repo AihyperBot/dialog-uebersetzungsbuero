@@ -15,7 +15,7 @@ export const Route = createRootRoute({
         content:
           "Dolmetscherbüro Dialog vermittelt seit 2012 professionelle Dolmetscher und Übersetzer — bundesweit, mit Schwerpunkt Kurdisch, Türkisch, Aserbaidschanisch und Turkmenisch.",
       },
-      { name: "theme-color", content: "#1c1915" },
+      { name: "theme-color", content: "#121416" },
     ],
     links: [
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
@@ -23,7 +23,7 @@ export const Route = createRootRoute({
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap",
       },
       { rel: "stylesheet", href: appCss },
       { rel: "manifest", href: "/__grok/manifest.webmanifest" },

@@ -2,22 +2,24 @@
 
 @theme {
   --font-sans: "Source Sans 3", "Segoe UI", sans-serif;
-  --font-display: "Cormorant Garamond", "Palatino Linotype", Palatino, serif;
+  --font-display: "Outfit", "Segoe UI", sans-serif;
 
-  --color-ink: #1c1915;
-  --color-ink-soft: #3f3933;
-  --color-muted: #6d655c;
-  --color-paper: #f6f3ee;
-  --color-paper-deep: #efe8de;
-  --color-surface: #fffcf8;
-  --color-line: #e4dbd0;
-  --color-line-strong: #cfc3b4;
-  --color-seal: #7c2f2a;
-  --color-seal-deep: #5e221e;
-  --color-brass: #6e5529;
-  --color-brass-soft: #f3ead9;
-  --color-on-seal: #fffcf8;
-  --color-on-ink: #f6f3ee;
+  --color-ink: #121416;
+  --color-ink-soft: #2c3338;
+  --color-muted: #5c686e;
+  --color-paper: #f4f7f8;
+  --color-paper-deep: #e7eef1;
+  --color-surface: #ffffff;
+  --color-line: #e1e7ea;
+  --color-line-strong: #c5d0d6;
+  --color-seal: #c4312e;
+  --color-seal-deep: #9d2623;
+  --color-brass: #0c739c;
+  --color-brass-soft: #e5f5fb;
+  --color-on-seal: #ffffff;
+  --color-on-ink: #f7fbfc;
+  --color-logo-blue: #1aa3dc;
+  --color-logo-red: #f25450;
 
   --tracking-eyebrow: 0.16em;
 }
@@ -42,6 +44,8 @@
   h3,
   h4 {
     font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
     text-wrap: balance;
     line-height: 1.15;
   }
